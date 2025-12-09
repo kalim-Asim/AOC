@@ -19,4 +19,3 @@ with open("input.txt", "r") as f:
         ans += cur == 0
 
 print(ans)
-
