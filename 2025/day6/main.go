@@ -21,7 +21,15 @@ func main() {
 	}()
 
 	sc := bufio.NewScanner(f)
+	part1(sc)
+	// part2(sc)
+	if err := sc.Err(); err != nil {
+		log.Fatalf("scan error: %v", err)
+	}
+}
 
+func part1(sc *bufio.Scanner) {
+	var ans int
 	var op []string
 	var nums [][]int
 
@@ -39,24 +47,14 @@ func main() {
 			nums = append(nums, arr)
 		}
 	}
-	part1(op, nums)
-
-	if err := sc.Err(); err != nil {
-		log.Fatalf("scan error: %v", err)
-	}
-}
-
-func part1(op []string, nums [][]int) {
-	var ans int
-
 	for c := range nums {
-		num, mul := 0, false 
+		num, mul := 0, false
 		if op[c] == "*" {
 			mul = true
 			num = 1
-		} 
+		}
 		for r := range nums {
-			if (mul) {
+			if mul {
 				num *= nums[r][c]
 			} else {
 				num += nums[r][c]
@@ -65,12 +63,22 @@ func part1(op []string, nums [][]int) {
 		ans += num
 	}
 
-	fmt.Println("Part1 :", ans)
+	fmt.Println("Part1: ", ans)
 }
 
 /*
-func part2(op []string, nums [][]int) {
-	var ans int 
 
+func part2(sc *bufio.Scanner) {
+	var ans int
+	var op []string
+	var nums [][]int
+
+	for sc.Scan() {
+		line := sc.Text()
+	}
+
+
+	fmt.Println("Part2: ", ans)
 }
+
 */
