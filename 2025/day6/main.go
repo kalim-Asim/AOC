@@ -2,11 +2,9 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
-	"strconv"
-	"strings"
+	"day6/part"
 )
 
 func main() {
@@ -21,64 +19,19 @@ func main() {
 	}()
 
 	sc := bufio.NewScanner(f)
-	part1(sc)
-	// part2(sc)
+	var lines []string 
+	for sc.Scan() {
+		line := sc.Text()
+		if line == "" {
+			continue
+		}
+		lines = append(lines, line)
+	}
+
+	// part.Part1(lines)
+	part.Part2(lines)
+
 	if err := sc.Err(); err != nil {
 		log.Fatalf("scan error: %v", err)
 	}
 }
-
-func part1(sc *bufio.Scanner) {
-	var ans int
-	var op []string
-	var nums [][]int
-
-	for sc.Scan() {
-		line := strings.TrimSpace(sc.Text())
-		data := strings.Fields(line)
-		if data[0] == "*" || data[1] == "+" {
-			op = data
-		} else {
-			arr := make([]int, len(data))
-			for i := 0; i < len(data); i++ {
-				num, _ := strconv.Atoi(data[i])
-				arr[i] = num
-			}
-			nums = append(nums, arr)
-		}
-	}
-	for c := range nums {
-		num, mul := 0, false
-		if op[c] == "*" {
-			mul = true
-			num = 1
-		}
-		for r := range nums {
-			if mul {
-				num *= nums[r][c]
-			} else {
-				num += nums[r][c]
-			}
-		}
-		ans += num
-	}
-
-	fmt.Println("Part1: ", ans)
-}
-
-/*
-
-func part2(sc *bufio.Scanner) {
-	var ans int
-	var op []string
-	var nums [][]int
-
-	for sc.Scan() {
-		line := sc.Text()
-	}
-
-
-	fmt.Println("Part2: ", ans)
-}
-
-*/
