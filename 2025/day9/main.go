@@ -25,10 +25,14 @@ func main() {
 	}
 
 	parts.Part1(points)
+	parts.Part2(points)
 }
 
 func toInt(s string) int {
     n, _ := strconv.Atoi(s)
     return n
 }
+
+
+
 

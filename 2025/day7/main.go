@@ -39,7 +39,6 @@ func part1(grid []string) {
 			break
 		}
 	}
-
 	
 	for !que.Empty() {
 		// breadth first search

@@ -36,7 +36,7 @@ func (dsu *DSU) Union(v, u int) {
 		return 
 	}
 
-	if dsu.size[v] < dsu.size[u] {
+	if dsu.size[rv] < dsu.size[ru] {
 		rv, ru = ru, rv 
 	}
 	dsu.Components--
